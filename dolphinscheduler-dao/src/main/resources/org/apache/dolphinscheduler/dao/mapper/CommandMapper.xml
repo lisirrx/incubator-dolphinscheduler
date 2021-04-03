@@ -19,11 +19,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.apache.dolphinscheduler.dao.mapper.CommandMapper">
     <select id="getOneToRun" resultType="org.apache.dolphinscheduler.dao.entity.Command">
-        select command.* from t_ds_command command
+        select top 1 command.* from t_ds_command command
         join t_ds_process_definition definition on command.process_definition_id = definition.id
         where definition.release_state = 1 AND definition.flag = 1
         order by command.update_time asc
-        limit 1
     </select>
     <select id="countCommandState" resultType="org.apache.dolphinscheduler.dao.entity.CommandCount">
         select cmd.command_type as command_type, count(1) as count

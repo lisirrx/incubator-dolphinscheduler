@@ -27,10 +27,9 @@
         </if>
     </delete>
     <select id="queryProjectRelation" resultType="org.apache.dolphinscheduler.dao.entity.ProjectUser">
-      select *
+      select top 1 *
       from t_ds_relation_project_user
       where project_id = #{projectId}
       and user_id = #{userId}
-      limit 1
     </select>
 </mapper>
